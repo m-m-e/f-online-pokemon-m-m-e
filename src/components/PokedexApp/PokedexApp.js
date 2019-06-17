@@ -6,10 +6,12 @@ class PokedexApp extends React.Component {
     super(props);
     this.state = {
       pokeList: [],
-      pokeData: {}
+      pokeData: {},
+      searchTerm: ''
     }
 
     this.getPokemonList = this.getPokemonList.bind(this);
+    this.searchPokemon = this.searchPokemon.bind(this);
   }
 
   componentDidMount(){
@@ -56,30 +58,40 @@ class PokedexApp extends React.Component {
       .catch(error => console.error(error))
   }
 
+  searchPokemon(event){
+    const searchInput = event.currentTarget.value;
+    this.setState({searchTerm: searchInput})
+  }
+
   render(){
-    const {pokeData} = this.state;
+    const {pokeData, searchTerm} = this.state;
     const myData = Object.values(pokeData) || [];
     return (
       <div className="pokedexApp">
         <h1 className="pokedex__title">Pokedex</h1>
         <h2 className="pokedex__subtitle">Search here for your favourite Pokemon!</h2>
+        <div className="filter__container">
+          <label htmlFor="search" className="search__label">Enter the name of a Pokemon here </label>
+          <input type="text" id="search" className="search__box" onChange={this.searchPokemon}/>
+        </div>
         <ul className="pokemon__list">
-          {myData.length > 0 && myData.map(item => {
-            return(
-              <li className="pokemon__list-item" key={item.id}>
-                <h3 className="pokemon__name">{item.name}</h3>
-                <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-                <ul className="types__list">Types
-                  {item.types.map((type, index) => {
-                    return(
-                      <li className="type" key={index}>{type.type.name}</li>
-                    )
-                  })}
-                </ul>
-              </li>
-            )
+          {myData.length > 0 && myData
+            .filter(item => item.name.includes(searchTerm))
+            .map(item => {
+              return(
+                <li className="pokemon__list-item" key={item.id}>
+                  <h3 className="pokemon__name">{item.name}</h3>
+                  <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
+                  <ul className="types__list">Types
+                    {item.types.map((type, index) => {
+                      return(
+                        <li className="type" key={index}>{type.type.name}</li>
+                      )
+                    })}
+                  </ul>
+                </li>
+              )
           })}
-          
         </ul>
       </div>
     );

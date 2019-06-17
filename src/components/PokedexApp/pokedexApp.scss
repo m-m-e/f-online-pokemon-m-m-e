@@ -2,7 +2,9 @@
 
 .pokedexApp {
   background: $color-yellow;
-
+  font-family: $font-main;
+  padding: 10px;
+  
   .pokedex__title {
     margin: 0;
   }
