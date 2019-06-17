@@ -12,19 +12,7 @@ class PokeList extends React.Component {
           .filter(item => item.name.toLowerCase().includes(searchTerm))
           .map(item => {
             return(
-              <PokeCard item={item} />
-              // <li className="pokemon__list-item" key={item.id}>
-              //   <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-              //   <p className="pokemon__id">ID / {item.id}</p>
-              //   <h3 className="pokemon__name">{item.name}</h3>
-              //   <ul className="types__list">
-              //     {item.types.map((type, index) => {
-              //       return(
-              //         <li className="type" key={index}>{type.type.name}</li>
-              //       )
-              //     })}
-              //   </ul>
-              // </li>
+              <PokeCard item={item} key={item.id} />
             )
           })}
       </ul>

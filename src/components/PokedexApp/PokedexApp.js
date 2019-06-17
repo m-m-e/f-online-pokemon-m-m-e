@@ -1,6 +1,7 @@
 import React from 'react';
 import './pokedexApp.scss';
 import PokeList from '../PokeList/PokeList';
+import Footer from '../Footer/Footer';
 
 class PokedexApp extends React.Component {
   constructor(props){
@@ -76,33 +77,13 @@ class PokedexApp extends React.Component {
     return (
       <div className="pokedexApp">
         <h1 className="pokedex__title">Pokedex</h1>
-        <h2 className="pokedex__subtitle">Search here for your favourite Pokemon!</h2>
+        <h2 className="pokedex__subtitle">Search for your favourite Pokemon!</h2>
         <div className="filter__container">
           <label htmlFor="search" className="search__label">Enter the name of a Pokemon here </label>
           <input type="text" id="search" className="search__box" onChange={this.searchPokemon}/>
         </div>
         <PokeList myData={myData} searchTerm={lowerCaseSearchTerm} />
-        {/* <ul className="pokemon__list">
-          {myData.length > 0 && myData
-            .sort(function(a, b){return a.id - b.id})
-            .filter(item => item.name.toLowerCase().includes(lowerCaseSearchTerm))
-            .map(item => {
-              return(
-                <li className="pokemon__list-item" key={item.id}>
-                  <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-                  <p className="pokemon__id">ID / {item.id}</p>
-                  <h3 className="pokemon__name">{item.name}</h3>
-                  <ul className="types__list">
-                    {item.types.map((type, index) => {
-                      return(
-                        <li className="type" key={index}>{type.type.name}</li>
-                      )
-                    })}
-                  </ul>
-                </li>
-              )
-          })}
-        </ul> */}
+        <Footer />
       </div>
     );
   }
