@@ -13,6 +13,14 @@ class PokedexApp extends React.Component {
 
   componentDidMount(){
     this.getPokemonList();
+    const savedPokemonList = JSON.parse(localStorage.getItem('pokeList')) || [];
+    const savedPokemonData = JSON.parse(localStorage.getItem('pokeData')) || {};
+    if (savedPokemonList.length === 0) {
+      this.getPokemonList();
+    } else {
+      this.setState({pokeList: savedPokemonList});
+      this.setState({pokeData: savedPokemonData});
+    }
   }
 
   getPokemonList(){
@@ -21,7 +29,7 @@ class PokedexApp extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({pokeList: data.results});
-        let newPokemon = {};
+        localStorage.setItem('pokeList', JSON.stringify(data.results));
         for (let i = 0; i < 25; i++) {
           fetch(data.results[i].url)
             .then(response => response.json())
@@ -35,7 +43,7 @@ class PokedexApp extends React.Component {
                   "types": data.types
                   }
                 };
-                console.log(newData);
+                localStorage.setItem('pokeData', JSON.stringify(newData));
                 return(
                   {pokeData: newData}
                 )
