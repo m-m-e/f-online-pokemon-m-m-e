@@ -37,10 +37,11 @@ class PokedexApp extends React.Component {
               this.setState(prevState => {
                 const newData = {...prevState.pokeData, 
                   [data.name]: {
-                  "id": data.id,
-                  "picture-front": data.sprites.front_default,
-                  "picture-back": data.sprites.back_default,
-                  "types": data.types
+                    "name": data.name,
+                    "id": data.id,
+                    "pictureFront": data.sprites.front_default,
+                    "pictureBack": data.sprites.back_default,
+                    "types": data.types
                   }
                 };
                 localStorage.setItem('pokeData', JSON.stringify(newData));
@@ -56,22 +57,28 @@ class PokedexApp extends React.Component {
 
   render(){
     const {pokeData} = this.state;
+    const myData = Object.values(pokeData) || [];
     return (
       <div className="PokedexApp">
         <h1 className="title">Pokedex</h1>
         <h2 className="subtitle">Search here for your favourite Pokemon!</h2>
         <ul className="pokemon__list">
-{/*           
-          {pokeData.map(item => {
+          {myData.length > 0 && myData.map(item => {
             return(
               <li className="pokemon__list-item" key={item.id}>
                 <h3 className="pokemon__name">{item.name}</h3>
                 <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-              {item.types.map(type => )}
+                <ul className="types__list">
+                  {item.types.map((type, index) => {
+                    return(
+                      <li className="type" key={index}>{type.type.name}</li>
+                    )
+                  })}
+                </ul>
               </li>
             )
           })}
-           */}
+          
         </ul>
       </div>
     );
