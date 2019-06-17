@@ -5,18 +5,10 @@ class PokedexApp extends React.Component {
     super(props);
     this.state = {
       pokeList: [],
-      pokeData: {
-        name: {
-          "id": 0,
-          "picture-front": "",
-          "picture-back": "",
-          "types": []
-        }
-      }
+      pokeData: {}
     }
 
     this.getPokemonList = this.getPokemonList.bind(this);
-    // this.getPokemonData = this.getPokemonData.bind(this);
   }
 
   componentDidMount(){
@@ -29,39 +21,30 @@ class PokedexApp extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({pokeList: data.results});
-        fetch(data.results[0].url)
-          .then(response => response.json())
-          .then(data => {
-            const newPokemon = {
-              [data.name]: {
-                "id": data.id,
-                "picture-front": data.sprites.front_default,
-                "picture-back": data.sprites.back_default,
-                "types": data.types
-              }
-            };
-          this.setState({pokeData: newPokemon})
-        })
+        let newPokemon = {};
+        for (let i = 0; i < 25; i++) {
+          fetch(data.results[i].url)
+            .then(response => response.json())
+            .then(data => {
+              this.setState(prevState => {
+                const newData = {...prevState.pokeData, 
+                  [data.name]: {
+                  "id": data.id,
+                  "picture-front": data.sprites.front_default,
+                  "picture-back": data.sprites.back_default,
+                  "types": data.types
+                  }
+                };
+                console.log(newData);
+                return(
+                  {pokeData: newData}
+                )
+              })
+            })
+          }
       })
       .catch(error => console.error(error))
   }
-
-  
-    // for (let i = 0; i < 25; i++){
-    //   fetch(pokeList[i].url)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       newPokemon = {
-    //         [data.name]: {
-    //           "id": data.id,
-    //           "picture-front": data.sprites.front_default,
-    //           "picture-back": data.sprites.back_default,
-    //           "types": data.types
-    //         }
-    //       };
-    //       this.setState({pokeData: newPokemon})
-    //       // this.setState(prevState => ({pokeData: [...prevState.pokeData, newPokemon]}))
-    //     })
 
   render(){
     // const {pokeList} = this.state;
