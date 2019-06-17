@@ -1,4 +1,5 @@
 import React from 'react';
+import './pokedexApp.scss';
 
 class PokedexApp extends React.Component {
   constructor(props){
@@ -59,16 +60,16 @@ class PokedexApp extends React.Component {
     const {pokeData} = this.state;
     const myData = Object.values(pokeData) || [];
     return (
-      <div className="PokedexApp">
-        <h1 className="title">Pokedex</h1>
-        <h2 className="subtitle">Search here for your favourite Pokemon!</h2>
+      <div className="pokedexApp">
+        <h1 className="pokedex__title">Pokedex</h1>
+        <h2 className="pokedex__subtitle">Search here for your favourite Pokemon!</h2>
         <ul className="pokemon__list">
           {myData.length > 0 && myData.map(item => {
             return(
               <li className="pokemon__list-item" key={item.id}>
                 <h3 className="pokemon__name">{item.name}</h3>
                 <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-                <ul className="types__list">
+                <ul className="types__list">Types
                   {item.types.map((type, index) => {
                     return(
                       <li className="type" key={index}>{type.type.name}</li>
