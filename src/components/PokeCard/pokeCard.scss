@@ -1,0 +1,32 @@
+@import '../../stylesheets/variables';
+
+.pokemon__list-item {
+  background: $color-blue;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $color-white;
+  margin: 10px;
+  
+  .pokemon__image {
+    width: 150px;
+  }
+  
+  .pokemon__id {
+    margin: 0;
+  }
+  
+  .pokemon__name {
+    margin: 0;
+  }
+  
+  .types__list {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+  }
+}

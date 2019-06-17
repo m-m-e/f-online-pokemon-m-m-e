@@ -2,32 +2,11 @@
 
 .pokedexApp {
   background: $color-yellow;
+  min-height: 100vh;
   font-family: $font-main;
   padding: 10px;
-  
+
   .pokedex__title {
     margin: 0;
-  }
-}
-
-.pokemon__list {
-  font-family: $font-main;
-  font-size: $font-s;
-  list-style: none;
-
-  .pokemon__list-item {
-    background: $color-blue;
-    width: 250px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: $color-white;
-    margin: 10px;
-  }
-
-  .types__list {
-    padding: 0;
-    list-style: none;
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './pokedexApp.scss';
+import PokeList from '../PokeList/PokeList';
 
 class PokedexApp extends React.Component {
   constructor(props){
@@ -26,6 +27,11 @@ class PokedexApp extends React.Component {
     }
   }
 
+  
+  capitaliseFirstLetter(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   getPokemonList(){
     const endpoint = "https://pokeapi.co/api/v2/pokemon?limit=25/";
     fetch(endpoint)
@@ -40,7 +46,7 @@ class PokedexApp extends React.Component {
               this.setState(prevState => {
                 const newData = {...prevState.pokeData, 
                   [data.name]: {
-                    "name": data.name,
+                    "name": this.capitaliseFirstLetter(data.name),
                     "id": data.id,
                     "pictureFront": data.sprites.front_default,
                     "pictureBack": data.sprites.back_default,
@@ -66,6 +72,7 @@ class PokedexApp extends React.Component {
   render(){
     const {pokeData, searchTerm} = this.state;
     const myData = Object.values(pokeData) || [];
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
     return (
       <div className="pokedexApp">
         <h1 className="pokedex__title">Pokedex</h1>
@@ -74,15 +81,18 @@ class PokedexApp extends React.Component {
           <label htmlFor="search" className="search__label">Enter the name of a Pokemon here </label>
           <input type="text" id="search" className="search__box" onChange={this.searchPokemon}/>
         </div>
-        <ul className="pokemon__list">
+        <PokeList myData={myData} searchTerm={lowerCaseSearchTerm} />
+        {/* <ul className="pokemon__list">
           {myData.length > 0 && myData
-            .filter(item => item.name.includes(searchTerm))
+            .sort(function(a, b){return a.id - b.id})
+            .filter(item => item.name.toLowerCase().includes(lowerCaseSearchTerm))
             .map(item => {
               return(
                 <li className="pokemon__list-item" key={item.id}>
-                  <h3 className="pokemon__name">{item.name}</h3>
                   <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-                  <ul className="types__list">Types
+                  <p className="pokemon__id">ID / {item.id}</p>
+                  <h3 className="pokemon__name">{item.name}</h3>
+                  <ul className="types__list">
                     {item.types.map((type, index) => {
                       return(
                         <li className="type" key={index}>{type.type.name}</li>
@@ -92,7 +102,7 @@ class PokedexApp extends React.Component {
                 </li>
               )
           })}
-        </ul>
+        </ul> */}
       </div>
     );
   }
