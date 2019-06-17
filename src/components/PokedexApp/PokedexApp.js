@@ -5,7 +5,7 @@ class PokedexApp extends React.Component {
     super(props);
     this.state = {
       pokeList: [],
-      pokeData: []
+      pokeData: {}
     }
 
     this.getPokemonList = this.getPokemonList.bind(this);
@@ -14,7 +14,7 @@ class PokedexApp extends React.Component {
   componentDidMount(){
     this.getPokemonList();
     const savedPokemonList = JSON.parse(localStorage.getItem('pokeList')) || [];
-    const savedPokemonData = JSON.parse(localStorage.getItem('pokeData')) || [];
+    const savedPokemonData = JSON.parse(localStorage.getItem('pokeData')) || {};
     if (savedPokemonList.length === 0) {
       this.getPokemonList();
     } else {
@@ -35,15 +35,14 @@ class PokedexApp extends React.Component {
             .then(response => response.json())
             .then(data => {
               this.setState(prevState => {
-                const newData = [...prevState.pokeData, 
-                  {
-                    "name": data.name,
-                    "id": data.id,
-                    "pictureFront": data.sprites.front_default,
-                    "pictureBack": data.sprites.back_default,
-                    "types": data.types
+                const newData = {...prevState.pokeData, 
+                  [data.name]: {
+                  "id": data.id,
+                  "picture-front": data.sprites.front_default,
+                  "picture-back": data.sprites.back_default,
+                  "types": data.types
                   }
-                ];
+                };
                 localStorage.setItem('pokeData', JSON.stringify(newData));
                 return(
                   {pokeData: newData}
@@ -62,16 +61,17 @@ class PokedexApp extends React.Component {
         <h1 className="title">Pokedex</h1>
         <h2 className="subtitle">Search here for your favourite Pokemon!</h2>
         <ul className="pokemon__list">
-          
-          {pokeData.length > 0 && pokeData.map(item => {
+{/*           
+          {pokeData.map(item => {
             return(
               <li className="pokemon__list-item" key={item.id}>
                 <h3 className="pokemon__name">{item.name}</h3>
                 <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
-                
+              {item.types.map(type => )}
               </li>
             )
           })}
+           */}
         </ul>
       </div>
     );
