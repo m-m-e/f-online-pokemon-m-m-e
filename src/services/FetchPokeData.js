@@ -8,7 +8,15 @@ const FetchPokeData = () => {
         return fetch(item.url)
           .then(response => response.json())
           .then(data => {
-            return data;
+            const newData = data;
+            fetch(`https://pokeapi.co/api/v2/evolution-chain/${newData.id}`)
+              .then(response => response.json())
+              .then(data => {
+                newData.chain = data.chain;
+                return newData;
+              })
+              .catch(error => console.error(error))
+            return newData;
           })
           .catch(error => console.error(error));
       }));
