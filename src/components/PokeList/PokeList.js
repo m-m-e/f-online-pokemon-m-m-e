@@ -1,6 +1,7 @@
 import React from 'react';
 import './pokeList.scss';
 import PokeCard from '../PokeCard/PokeCard';
+import PropTypes from 'prop-types';
 
 class PokeList extends React.Component {
   render(){
@@ -19,5 +20,10 @@ class PokeList extends React.Component {
     );
   }
 }
+
+PokeList.propTypes = {
+  searchTerm: PropTypes.string,
+  myData: PropTypes.array
+};
 
 export default PokeList;
