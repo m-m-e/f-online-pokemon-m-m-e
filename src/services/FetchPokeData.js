@@ -9,10 +9,10 @@ const FetchPokeData = () => {
           .then(response => response.json())
           .then(data => {
             const newData = data;
-            fetch(`https://pokeapi.co/api/v2/evolution-chain/${newData.id}`)
-              .then(response => response.json())
-              .then(data => {
-                newData.chain = data.chain;
+            fetch(`https://pokeapi.co/api/v2/pokemon-species/${newData.id}`)
+            .then(response => response.json())
+            .then(data => {
+                newData.evolvesFrom = data.evolves_from_species;
                 return newData;
               })
               .catch(error => console.error(error))

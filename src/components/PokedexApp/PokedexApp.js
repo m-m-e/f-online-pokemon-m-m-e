@@ -35,13 +35,13 @@ class PokedexApp extends React.Component {
   getPokemon(){
     FetchPokeData()
       .then(newData => {
-        console.log(newData);
         newData.forEach(element => {
-          console.log(element);
           return (
             this.setState(prevState => {
+              console.log(element);
               const newPokeData = {...prevState.pokeData, 
                 [element.name]: {
+                  "evolution": element.evolvesFrom,
                   "name": this.capitaliseFirstLetter(element.name),
                   "id": element.id,
                   "pictureFront": element.sprites.front_default,
@@ -50,8 +50,7 @@ class PokedexApp extends React.Component {
                   "height": element.height,
                   "weight": element.weight,
                   "abilities": element.abilities,
-                  "stats": element.stats,
-                  "evolution": element.chain
+                  "stats": element.stats
                 }
               };
               localStorage.setItem('pokeData', JSON.stringify(newPokeData));
