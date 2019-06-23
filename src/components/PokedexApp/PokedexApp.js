@@ -38,7 +38,6 @@ class PokedexApp extends React.Component {
         newData.forEach(element => {
           return (
             this.setState(prevState => {
-              console.log(element);
               const newPokeData = {...prevState.pokeData, 
                 [element.name]: {
                   "evolution": element.evolvesFrom,
