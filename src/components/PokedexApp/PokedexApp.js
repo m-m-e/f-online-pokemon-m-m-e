@@ -1,10 +1,11 @@
 import React from 'react';
 import './pokedexApp.scss';
-import PokeList from '../PokeList/PokeList';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import Search from '../Search/Search';
+import Home from '../Home/Home';
+import Details from '../Details/Details';
 import {FetchPokeData} from '../../services/FetchPokeData';
+import { Route, Switch } from 'react-router-dom';
 
 class PokedexApp extends React.Component {
   constructor(props){
@@ -73,8 +74,26 @@ class PokedexApp extends React.Component {
     return (
       <div className="pokedexApp">
         <Header />
-        <Search searchPokemon={this.searchPokemon} searchTerm={lowerCaseSearchTerm} />
-        <PokeList myData={myData} searchTerm={lowerCaseSearchTerm} />
+        <main className="main">
+          <Switch>
+              <Route
+                exact path="/"
+                render={routerProps => (
+                  <Home 
+                    searchPokemon={this.searchPokemon} 
+                    searchTerm={lowerCaseSearchTerm} 
+                    myData={myData}
+                  />
+                )}
+              />
+              <Route
+                path="/details/:id"
+                render={routerProps => (
+                  <Details match={routerProps.match} myData={myData} />
+                )}
+              />
+          </Switch>
+        </main>
         <Footer />
       </div>
     );
