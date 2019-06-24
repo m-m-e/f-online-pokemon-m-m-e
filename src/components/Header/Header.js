@@ -6,8 +6,8 @@ class Header extends React.Component {
   render(){
     return(
       <header className="header">
-          <Link to="/">
-            <i className="fas fa-home" title="Return to home"/>
+          <Link className="header__link" to="/">
+            <i className="fas fa-home icon" title="Return to home"/>
           </Link>
           <h1 className="pokedex__title">Pokedex</h1>
           <h2 className="pokedex__subtitle">What's your favourite Pokemon?</h2>

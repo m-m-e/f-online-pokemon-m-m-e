@@ -10,6 +10,12 @@
   height: 300px;
   color: $color-white;
   margin: 10px auto;
+  box-shadow: 2px 2px 5px $color-black;
+  transition: transform 0.5s;
+
+  &:hover{
+    transform: scale(1.05);
+  }
   
   .pokemon__list-link{
     display: flex;
