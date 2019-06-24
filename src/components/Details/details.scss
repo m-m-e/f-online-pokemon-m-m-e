@@ -1,0 +1,56 @@
+@import '../../stylesheets/variables';
+
+.details {
+  background: $color-white;
+  max-width: 800px;
+  margin: auto;
+  border: 5px solid $color-grey;
+  @media all and (min-width:768px){
+    border-radius: 5%;
+  }
+
+  p{
+    margin: 0;
+  }
+
+  .details__container{
+    display: flex;
+    flex-wrap: wrap;
+    @media all and (min-width: 768px){
+      flex-wrap: nowrap;
+    }
+  }
+
+  .details__box{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+    text-decoration: underline; 
+    margin: 5px 0;
+    }
+  }
+  
+  .pokemon__name{
+    align-self: center;
+    font-size: $font-l;
+  }
+
+  .image__container{
+    display: flex;
+  }
+
+  .pokemon__image{
+    width: 150px;
+    @media all and (min-width:1024px){
+      width: 200px;
+    }
+  }
+
+  .types__list{
+    list-style: none;
+  }
+}

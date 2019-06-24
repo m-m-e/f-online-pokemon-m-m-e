@@ -10,7 +10,7 @@ class Header extends React.Component {
             <i className="fas fa-home" title="Return to home"/>
           </Link>
           <h1 className="pokedex__title">Pokedex</h1>
-          <h2 className="pokedex__subtitle">Search for your favourite Pokemon!</h2>
+          <h2 className="pokedex__subtitle">What's your favourite Pokemon?</h2>
       </header>
     );
   }

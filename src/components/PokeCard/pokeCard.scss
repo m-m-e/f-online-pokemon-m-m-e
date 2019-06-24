@@ -3,7 +3,7 @@
 .pokemon__list-item {
   display: block;
   background: $color-white;
-  border: 15px solid $color-grey;
+  border: 10px solid $color-grey;
   box-sizing: border-box;
   border-radius: 5%;
   width: 250px;
@@ -30,46 +30,49 @@
   .pokemon__name {
     margin: 0;
   }
+}
+.types__list {
+  margin: 5px 0;
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+.type{
+  display: inline-block;
+  padding: 2px 5px;
+  border: 1px solid black;
+  border-radius: 25%;
+  &-poison {
+    background-color: $color-purple;
+  }
   
-  .types__list {
-    width: 100%;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
+  &-grass {
+    background-color: $color-green;
   }
-  .type{
-    display: inline-block;
-    padding: 2px 5px;
-    border: 1px solid black;
-    border-radius: 25%;
-    &-poison {
-      background-color: $color-purple;
-    }
-    
-    &-grass {
-      background-color: $color-green;
-    }
-    
-    &-fire {
-      background-color: $color-red-fire;
-    }
-    
-    &-water {
-      background-color: $color-blue-sea;
-    }
-    
-    &-flying {
-      background-color: $color-white;
-      color: $color-blue-sky;
-    }
-    
-    &-bug {
-      background-color: $color-green-dark;
-    }
+  
+  &-fire {
+    background-color: $color-red-fire;
   }
-  .evolution{
-    margin: 5px 0 0 0;
-    text-align: center;
+  
+  &-water {
+    background-color: $color-blue-sea;
   }
+  
+  &-flying {
+    background-color: $color-white;
+    color: $color-blue-sky;
+  }
+  
+  &-bug {
+    background-color: $color-green-dark;
+  }
+  &-electric{
+    background-color: $color-yellow;
+  }
+}
+.evolution{
+  margin: 5px 0 0 0;
+  text-align: center;
 }
