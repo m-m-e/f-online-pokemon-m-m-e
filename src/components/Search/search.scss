@@ -1,0 +1,11 @@
+@import '../../stylesheets/variables';
+
+.filter__container{
+  display: flex;
+  justify-content: center;
+  color: $color-white;
+
+  .search__box{
+    margin-left: 10px;
+  }
+}

@@ -27,6 +27,13 @@ class Details extends React.Component{
                 <ul className="types__list">
                   {item.types.map((type, index) => <li className="type" key={index}>{type.type.name}</li>)}
                 </ul>
+                {item.evolvesFrom !== null 
+                  ?
+                  <p className="evolution">{`Evolves from ${item.evolvesFrom.name}`}</p>
+
+                  :
+                  <p className="no__evolution">{`${item.name} is the first evolution`}</p>
+                }
                 </div>
               )
             })

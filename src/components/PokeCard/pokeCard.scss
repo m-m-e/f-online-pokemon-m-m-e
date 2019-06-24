@@ -1,14 +1,23 @@
 @import '../../stylesheets/variables';
 
 .pokemon__list-item {
-  background: $color-blue;
+  display: block;
+  background: $color-white;
+  border: 15px solid $color-grey;
+  box-sizing: border-box;
+  border-radius: 5%;
   width: 250px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 300px;
   color: $color-white;
-  margin: 10px 20px;
+  margin: 10px auto;
+  
+  .pokemon__list-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: $color-black;
+  }
   
   .pokemon__image {
     width: 150px;
@@ -28,5 +37,39 @@
     list-style: none;
     display: flex;
     justify-content: space-around;
+  }
+  .type{
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px solid black;
+    border-radius: 25%;
+    &-poison {
+      background-color: $color-purple;
+    }
+    
+    &-grass {
+      background-color: $color-green;
+    }
+    
+    &-fire {
+      background-color: $color-red-fire;
+    }
+    
+    &-water {
+      background-color: $color-blue-sea;
+    }
+    
+    &-flying {
+      background-color: $color-white;
+      color: $color-blue-sky;
+    }
+    
+    &-bug {
+      background-color: $color-green-dark;
+    }
+  }
+  .evolution{
+    margin: 5px 0 0 0;
+    text-align: center;
   }
 }

@@ -40,7 +40,7 @@ class PokedexApp extends React.Component {
             this.setState(prevState => {
               const newPokeData = {...prevState.pokeData, 
                 [element.name]: {
-                  "evolution": element.evolvesFrom,
+                  "evolvesFrom": element.evolvesFrom,
                   "name": this.capitaliseFirstLetter(element.name),
                   "id": element.id,
                   "pictureFront": element.sprites.front_default,
