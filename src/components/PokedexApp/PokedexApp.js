@@ -6,6 +6,10 @@ import Home from '../Home/Home';
 import Details from '../Details/Details';
 import {FetchPokeData} from '../../services/FetchPokeData';
 import { Route, Switch } from 'react-router-dom';
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 class PokedexApp extends React.Component {
   constructor(props){
@@ -75,24 +79,36 @@ class PokedexApp extends React.Component {
       <div className="pokedexApp">
         <Header />
         <main className="main">
-          <Switch>
-              <Route
-                exact path="/"
-                render={routerProps => (
-                  <Home 
-                    searchPokemon={this.searchPokemon} 
-                    searchTerm={lowerCaseSearchTerm} 
-                    myData={myData}
-                  />
-                )}
-              />
-              <Route
-                path="/details/:id"
-                render={routerProps => (
-                  <Details match={routerProps.match} myData={myData} />
-                )}
-              />
-          </Switch>
+          <Route render={({location}) =>(
+            <TransitionGroup className="transition">
+              <CSSTransition
+                    key={location.pathname}
+                    timeout={350}
+                    classNames="fade"
+              >
+                <section className="route__section">
+                  <Switch location={location}>
+                      <Route
+                        exact path="/"
+                        render={routerProps => (
+                          <Home 
+                            searchPokemon={this.searchPokemon} 
+                            searchTerm={lowerCaseSearchTerm} 
+                            myData={myData}
+                          />
+                        )}
+                      />
+                      <Route
+                        path="/details/:id"
+                        render={routerProps => (
+                          <Details match={routerProps.match} myData={myData} />
+                        )}
+                      />
+                  </Switch>
+                </section>
+              </CSSTransition>
+            </TransitionGroup>
+          )} />
         </main>
         <Footer />
       </div>

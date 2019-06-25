@@ -6,11 +6,38 @@
   font-family: $font-main;
   padding: 10px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
-
-  .main{
+  
+  .main {
     flex-grow: 1;
+  }
+
+  .route__section {
+    position: absolute;
+    top: 140px;
+    left: 0;
+    right:0;
+    height: 480px;
+    overflow-y: scroll;
+  }
+
+  .fade-enter {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in 50ms;
+  }
+
+  .fade-exit {
+    opacity: 1;
+  }
+
+  .fade-exit.fade-exit-active {
+    opacity: 0;
+    transition: opacity 100ms ease-in;
   }
 }

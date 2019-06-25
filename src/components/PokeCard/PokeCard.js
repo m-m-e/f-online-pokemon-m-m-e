@@ -8,7 +8,7 @@ class PokeCard extends React.Component {
     const {item} = this.props;
     return(
       <li className="pokemon__list-item" key={item.id}>
-        <Link className="pokemon__list-link" to={`/details/${item.id}`}>
+        <Link className="pokemon__list-link" to={`/details/${item.id}`} title={item.name}>
           <img src={item.pictureFront} alt={item.name} className="pokemon__image"/>
           <h3 className="pokemon__name">{item.name}</h3>
           <p className="pokemon__id">ID / {item.id}</p>
